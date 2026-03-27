@@ -1,10 +1,20 @@
+import { HeroSpotlight } from "@/components/home/HeroSpotlight";
+import { LatestUpdatesSection } from "@/components/home/LatestUpdatesSection";
+import { PopularSeries } from "@/components/home/PopularSeries";
+import { GenreBrowse } from "@/components/home/GenreBrowse";
+import { getFeaturedSeries, getLatestUpdates, getPopularSeries, MOCK_SERIES } from "@/lib/mockData";
+
 export default function HomePage() {
+  const featured = getFeaturedSeries();
+  const latestUpdates = getLatestUpdates();
+  const popular = getPopularSeries();
+
   return (
-    <main className="flex-1 flex flex-col">
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-heading font-bold mb-4">Vortex Scans Homepage</h1>
-        <p className="text-text-secondary">Hero section, Latest Updates, and Popular Series will go here.</p>
-      </div>
+    <main className="flex-1 flex flex-col w-full bg-bg-body overflow-x-hidden min-h-screen">
+      <HeroSpotlight featured={featured} />
+      <LatestUpdatesSection updates={latestUpdates} />
+      <PopularSeries series={popular} />
+      <GenreBrowse initialSeries={MOCK_SERIES} />
     </main>
   );
 }
